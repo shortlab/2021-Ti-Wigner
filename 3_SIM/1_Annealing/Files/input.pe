@@ -1,0 +1,41 @@
+variable a loop 500 # number of dumps
+label loop
+
+variable pairstyle string "eam/fs"
+variable potential string "../../../Ti_v2.eam.fs"
+variable element string "Ti"
+
+# ------------------------ INITIALIZATION ----------------------------
+log log.pe
+echo log
+units 		metal
+dimension	3
+boundary	p	p	p
+atom_style	atomic
+
+# ----------------------- ATOM DEFINITION ----------------------------
+variable       c equal $a
+read_data      ./files/step$c.data 							
+
+# ------------------------ FORCE FIELDS ------------------------------
+pair_style      ${pairstyle}
+pair_coeff      * * ${potential} ${element}
+
+
+# ------------------------- SETTINGS ---------------------------------
+thermo 1000                                                                      #output every  1000 time steps
+thermo_style custom step dt time press pe ke temp 
+
+#-------------------------- heating -----------------------------
+dump         1 all custom 10000 min.$c.*.data id type x y z
+minimize     1e-5 1e-5 10000 10000
+
+variable     e equal pe
+print        "$e" append Pe.dat 
+
+shell        rm min.$c.0.data
+#shell       rm  ../step$c.data
+clear
+
+next a
+jump input.pe loop

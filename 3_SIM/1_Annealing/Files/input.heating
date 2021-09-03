@@ -1,0 +1,51 @@
+
+# Input file for annealing simulation
+
+variable element string 'Ti'							  
+variable datafile string '../A92-1-8000-CH.xyz'
+variable pairstyle string 'eam/fs'
+variable potential string '../../../Ti_v2.eam.fs'
+
+variable  Tm equal  1941							# Melting Point in K
+variable  initialT equal 570						
+variable  finalT equal 570							
+
+variable  relaxSteps equal 10000 						 
+variable  heatSteps   equal 50000000
+variable  dump equal "v_heatSteps/500"  						 
+
+# ------------------------ INITIALIZATION ----------------------------
+log log.heating
+echo log  									  
+units 		metal
+dimension	3
+boundary	p	p	p
+atom_style	atomic
+
+#----------------------- READ DATA  --------------------------------
+read_data       ${datafile}							   
+
+# ------------------------ FORCE FIELDS ------------------------------
+pair_style      ${pairstyle}
+pair_coeff      * * ${potential} ${element}
+
+# ------------------------- SETTINGS ---------------------------------
+thermo ${dump}                                                                    
+thermo_style custom step dt time press pe ke temp 		   # time = step*dt, ke = 1/2 mv^2, temp ke = 3/2*NkT
+timestep       0.002								   # units = metal, ps e.g. 2 fs
+
+#---------------------------equil ------------------------------------
+velocity       all create ${initialT} 541268 mom yes 				   # linear mom of ensemble -> zero
+fix            1 all nvt temp ${initialT} ${initialT} 0.1 
+run      ${relaxSteps} 
+
+reset_timestep 0
+#-------------------------- heating ---------------------------------
+unfix    1
+fix      1 all nvt temp ${initialT} ${finalT} 0.1
+variable e equal pe
+fix      2 all print ${dump} "$e" append converge.txt  
+restart  ${dump} ./files/restartA.bin ./files/restartB.bin
+dump     1 all custom ${dump} dump*.data id type x y z				  
+run      ${heatSteps}
+
