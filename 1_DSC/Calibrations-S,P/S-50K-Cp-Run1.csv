@@ -1,0 +1,31 @@
+Instrument:,NETZSCH DSC 404F3 DSC404F3A-0215-M,,,,,,,
+File name:,50K-Cp-Run1.ngb-ed9,,,,,,,
+Calibration file:,Sapph-1.0mm_1-50Kmin-PtY2O3.ngb-dd9,,,,,,,
+Heating rate:,50,,,,,,,
+Furnace:,SiC S,,,,,,,
+Crucible:,DSC/TG pan Pt-Rh,,,,,,,
+Atmosphere:,<no gas>,,,,,,,
+Date:,9/24/2020 9:37:50 AM (UTC-4),,,,,,,
+,,,,,,,,
+"Substance
+","Temp.
+/oC
+","-----
+","Cp sensitivity
+","Sensit.Exp
+uV/mW
+","Mathem. Weighting
+","Sensit. Calc.
+uV/mW
+",,%
+Value 2,116.9,1,0.842,0.842,1,0.87,,3.3
+Value 3,194.8,1,0.876,0.876,1,0.87,,-0.7
+Value 4,288.3,1,0.882,0.882,1,0.844,,-4.3
+Value 5,412.9,1,0.8,0.8,1,0.773,,-3.4
+Value 6,568.7,1,0.602,0.602,1,0.647,,7.5
+Value 7,724.5,1,0.485,0.485,1,0.513,,5.8
+Value 8,895.9,1,0.401,0.401,1,0.387,,-3.5
+Value 9,1051.7,1,0.325,0.325,1,0.304,,-6.5
+Value 10,1223.1,1,0.258,0.258,1,0.246,,-4.7
+Value 11,1394.5,1,0.217,0.217,1,0.21,,-3.2
+Value 12,1581.4,1,0.148,0.148,1,0.179,,20.9
