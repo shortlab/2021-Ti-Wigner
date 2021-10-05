@@ -10,8 +10,8 @@ Files include:
 
 2_TEM: additional micrographs for all samples and a MATLAB script to calculate the energy stored in loops.
 
-3_SIM: 0_PKA: sample inputs for PARCAS to run a single 5keV displacement cascade in Ti at 570K.
+3_SIM / 0_PKA: sample inputs for PARCAS to run a single 5keV displacement cascade in Ti at 570K.
 
-3_SIM: 1_Annealing: Files: atomic configurations for the simulations before and after annealing at 570, 750, and 870K, and LAMMPS input scripts for heating and quenching.
+3_SIM / 1_Annealing / Files: atomic configurations for the simulations before and after annealing at 570, 750, and 870K, and LAMMPS input scripts for heating and quenching.
 
-3_SIM: 1_Annealing: Movies: movies showing annealing of the supercells at 570, 750, and 870K.
+3_SIM / 1_Annealing / Movies: movies showing annealing of the supercells at 570, 750, and 870K.
